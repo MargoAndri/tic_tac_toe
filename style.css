@@ -20,12 +20,19 @@
     width: 50px;
     height: 50px;
     border: 1px solid #808080;
+    line-height: 48px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    color: #283136;
+    font-size: 25px;
 }
 
-.reset_game {
+.reset-game,
+.message {
     display: inline-block;
 
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 18px;
     text-transform: uppercase;
@@ -37,13 +44,13 @@
     border: none;
 }
 
-.reset_game:hover,
-.reset_game:focus {
+.reset-game:hover,
+.reset-game:focus {
     color: #5069ff;
     outline: none;
 }
 
-.reset_game:active {
+.reset-game:active {
     color: #ffce1b;
     outline: none;
 }
