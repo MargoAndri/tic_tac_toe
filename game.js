@@ -1,4 +1,3 @@
-import createElement from './create-element.js';
 
 const gameFieldSection = document.querySelector(`.container`);
 const resetGame = document.querySelector(`.reset-game`);
@@ -19,7 +18,9 @@ const playerScore = {
 };
 let player = `X`;
 
-
+/**
+ * @return {string} template
+ */
 const getTemplate = () => {
     return `
     <div class="field">
@@ -35,7 +36,19 @@ const getTemplate = () => {
     </div>`.trim();
 };
 
+/**
+ * @param {string} template
+ * @return {ChildNode}
+ */
+const createElement = (template) => {
+    const newElement = document.createElement(`div`);
+    newElement.innerHTML = template;
+    return newElement.firstChild;
+};
 
+/**
+ * @param {Node} section
+ */
 const renderGameField = (section) => {
     let newField = createElement(getTemplate());
     newField.addEventListener(`click`, (evt) => {
@@ -47,14 +60,19 @@ const renderGameField = (section) => {
             playerScore[player].push(+cellNumber);
             if (playerScore[player].length >= 3 && checkWin()) {
                 message.textContent = `Выиграл игрок ${player}!`;
+            } else {
+                player = (player === `X`) ?`O` : `X`;
+                message.textContent = `Сейчас ход игрока ${player}`;
             }
-            player = (player === `X`) ?`O` : `X`;
         }
     });
 
     section.insertBefore(newField, resetGame);
 };
 
+/**
+ * @return {boolean}
+ */
 const checkWin = () => {
     for (let combination of winCombinations) {
         let count = 0;
